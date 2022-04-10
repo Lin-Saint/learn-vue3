@@ -4,3 +4,5 @@
 - [x] scheduler
 - [x] stop 待完善
 - [x] readonly
+- [x] isReactive
+- [x] isReadonly
