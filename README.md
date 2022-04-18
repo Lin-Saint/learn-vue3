@@ -6,3 +6,4 @@
 - [x] readonly
 - [x] isReactive
 - [x] isReadonly
+- [x] shallowReadonly
