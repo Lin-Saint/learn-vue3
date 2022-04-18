@@ -7,3 +7,4 @@
 - [x] isReactive
 - [x] isReadonly
 - [x] shallowReadonly
+- [x] isProxy
