@@ -8,3 +8,4 @@
 - [x] isReadonly
 - [x] shallowReadonly
 - [x] isProxy
+- [x] ref
