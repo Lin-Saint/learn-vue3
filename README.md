@@ -10,3 +10,4 @@
 - [x] isProxy
 - [x] ref
 - [x] isRef unRef
+- [x] proxyRefs
