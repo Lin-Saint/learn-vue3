@@ -12,3 +12,6 @@
 - [x] isRef unRef
 - [x] proxyRefs
 - [x] computed
+- [x] component
+- [x] rollup
+- [x] init element
