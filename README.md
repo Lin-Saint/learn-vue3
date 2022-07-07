@@ -15,3 +15,4 @@
 - [x] component
 - [x] rollup
 - [x] init element
+- [x] this，$el 代理
