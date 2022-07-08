@@ -16,3 +16,4 @@
 - [x] rollup
 - [x] init element
 - [x] this，$el 代理
+- [x] shapeFlag 位运算
