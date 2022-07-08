@@ -24,6 +24,7 @@ function mountElement(vnode: any, container: any) {
   const { children, shapeFlag } = vnode;
 
   // children
+  //这里的位运算符比较其实是比较相同位数是否都为1 ep:TEXT_CHILDREN 二进制是0100， & 运算是两者都为1才为1，所以 x1xx & 0100,重要的是第三位的1，其实就是得出此时的shapeflag是否就是TEXT_CHILDREN类型
   if (shapeFlag & ShapeFlags.TEXT_CHILDREN) {
     el.textContent = children;
   } else if (shapeFlag & ShapeFlags.ARRAY_CHILDREN) {
