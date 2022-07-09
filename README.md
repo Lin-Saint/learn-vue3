@@ -18,3 +18,4 @@
 - [x] this，$el 代理
 - [x] shapeFlag 位运算
 - [x] 事件注册
+- [x] initProps
