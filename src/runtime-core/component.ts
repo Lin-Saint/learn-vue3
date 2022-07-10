@@ -29,7 +29,9 @@ export function createComponentInstance(vnode) {
     const { setup } = Component;
   
     if (setup) {
+      setCurrentInstance(instance);
       const setupResult = setup(shallowReadonly(instance.props));
+      setCurrentInstance(null);
   
       handleSetupResult(instance, setupResult);
     }
@@ -53,4 +55,14 @@ export function createComponentInstance(vnode) {
     // }
     instance.render = Component.render;
   }
+
+  let currentInstance = null;
+
+export function getCurrentInstance() {
+  return currentInstance;
+}
+
+export function setCurrentInstance(instance) {
+  currentInstance = instance;
+}
   

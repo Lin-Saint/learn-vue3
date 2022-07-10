@@ -21,3 +21,4 @@
 - [x] initProps
 - [x] slot
 - [x] fragment and text type dom
+- [x] getCurrentInstance
