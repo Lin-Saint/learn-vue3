@@ -20,3 +20,4 @@
 - [x] 事件注册
 - [x] initProps
 - [x] slot
+- [x] fragment and text type dom
