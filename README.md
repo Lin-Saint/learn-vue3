@@ -19,3 +19,4 @@
 - [x] shapeFlag 位运算
 - [x] 事件注册
 - [x] initProps
+- [x] slot

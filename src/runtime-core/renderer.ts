@@ -57,6 +57,7 @@ function processComponent(vnode: any, container: any) {
   mountComponent(vnode, container);
 }
 
+
 function mountComponent(initialVNode: any, container) {
   const instance = createComponentInstance(initialVNode);
 
