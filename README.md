@@ -22,3 +22,4 @@
 - [x] slot
 - [x] fragment and text type dom
 - [x] getCurrentInstance
+- [x] provide inject
