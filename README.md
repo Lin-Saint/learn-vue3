@@ -23,3 +23,4 @@
 - [x] fragment and text type dom
 - [x] getCurrentInstance
 - [x] provide inject
+- [x] 自定义渲染器
