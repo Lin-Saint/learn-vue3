@@ -19,8 +19,10 @@
 - [x] shapeFlag 位运算
 - [x] 事件注册
 - [x] initProps
+- [x] emit
 - [x] slot
 - [x] fragment and text type dom
 - [x] getCurrentInstance
 - [x] provide inject
 - [x] 自定义渲染器
+- [x] update element 流程
