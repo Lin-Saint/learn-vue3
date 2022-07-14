@@ -26,3 +26,4 @@
 - [x] provide inject
 - [x] 自定义渲染器
 - [x] update element 流程
+- [x] patch props
