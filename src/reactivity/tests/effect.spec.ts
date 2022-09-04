@@ -1,20 +1,22 @@
-import { reactive } from "../reactive";
 import { effect, stop } from "../effect";
+import { reactive } from "../reactive";
+
 describe("effect", () => {
-  it("effect", () => {
+  it("happy path", () => {
     const user = reactive({
-      name: "lin",
+      age: 10,
     });
-    let myName;
+
+    let nextAge;
     effect(() => {
-      myName = user.name + "huang";
+      nextAge = user.age + 1;
     });
 
-    expect(myName).toBe("linhuang");
+    expect(nextAge).toBe(11);
 
-    user.name = user.name + "gui";
-
-    expect(myName).toBe("linguihuang");
+    // update
+    user.age++;
+    expect(nextAge).toBe(12);
   });
 
   it("should return runner when call effect", () => {

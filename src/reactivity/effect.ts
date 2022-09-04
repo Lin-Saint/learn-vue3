@@ -2,7 +2,6 @@ import { extend } from "../shared";
 
 let activeEffect;
 let shouldTrack = false;
-
 export class ReactiveEffect {
   private _fn: any;
   deps = [];
@@ -14,18 +13,19 @@ export class ReactiveEffect {
     this.scheduler = scheduler;
   }
   run() {
-    //只有调用了stop的方法active才会为false，所以当active为false代表已经调用过了stop，此时直接调用回调函数并返回结果
     if (!this.active) {
       return this._fn();
     }
 
+    // 应该收集
     shouldTrack = true;
     activeEffect = this;
+    const r = this._fn();
 
-    const res = this._fn();
-
+    // 重置
     shouldTrack = false;
-    return res;
+
+    return r;
   }
   stop() {
     if (this.active) {
@@ -39,23 +39,24 @@ export class ReactiveEffect {
 }
 
 function cleanupEffect(effect) {
-  const { deps } = effect;
-  if (deps.length) {
-    for (let i = 0; i < deps.length; i++) {
-      deps[i].delete(effect);
-    }
-    deps.length = 0;
-  }
+  effect.deps.forEach((dep: any) => {
+    dep.delete(effect);
+  });
+
+  // 把 effect.deps 清空
+  effect.deps.length = 0;
 }
 
 const targetMap = new Map();
-export const track = (target, key) => {
+export function track(target, key) {
   if (!isTracking()) return;
+  // target -> key -> dep
   let depsMap = targetMap.get(target);
   if (!depsMap) {
     depsMap = new Map();
     targetMap.set(target, depsMap);
   }
+
   let dep = depsMap.get(key);
   if (!dep) {
     dep = new Set();
@@ -63,10 +64,12 @@ export const track = (target, key) => {
   }
 
   trackEffects(dep);
-};
+}
 
 export function trackEffects(dep) {
+  // 看看 dep 之前有没有添加过，添加过的话 那么就不添加了
   if (dep.has(activeEffect)) return;
+
   dep.add(activeEffect);
   activeEffect.deps.push(dep);
 }
@@ -75,11 +78,11 @@ export function isTracking() {
   return shouldTrack && activeEffect !== undefined;
 }
 
-export const trigger = (target, key) => {
+export function trigger(target, key) {
   let depsMap = targetMap.get(target);
   let dep = depsMap.get(key);
   triggerEffects(dep);
-};
+}
 
 export function triggerEffects(dep) {
   for (const effect of dep) {
@@ -91,20 +94,18 @@ export function triggerEffects(dep) {
   }
 }
 
-// type effectOptions = {
-//   scheduler?: Function;
-//   onStop?: Function;
-// };
-
-export const effect = (fn, options: any = {}) => {
+export function effect(fn, options: any = {}) {
+  // fn
   const _effect = new ReactiveEffect(fn, options.scheduler);
   extend(_effect, options);
 
   _effect.run();
+
   const runner: any = _effect.run.bind(_effect);
   runner.effect = _effect;
+
   return runner;
-};
+}
 
 export function stop(runner) {
   runner.effect.stop();
