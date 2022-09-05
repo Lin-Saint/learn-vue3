@@ -27,3 +27,5 @@
 - [x] 自定义渲染器
 - [x] update element 流程
 - [x] patch props
+- [x] diff
+- [x] nexttick
